@@ -1,7 +1,6 @@
 package day4;
 
-import java.util.Arrays;
-
+import java.util.Iterator;
 
 public class FindDifferences {
 
@@ -15,18 +14,13 @@ public class FindDifferences {
 		n = 45;
 		
 		
-		int[] narr = {25,75,50,45,10};
-		int d = 25;
-		
-//		String ans  = findDifference(narr, d);
-//		String ans =  findDifferenceV2(input, 78);
-		
-//		System.out.println(ans);
+		String ans  = findDifferences(arr, n);
+		System.out.println(ans);
 	}
 	
 	
-	// Bruteforce O(n^2)
-	public static String findDifference(int[] arr,int n) {
+	// Bruteforce 
+	public static String findDifferences(int[] arr,int n) {
 		
 		for (int i = 0; i < arr.length; i++) {
 			for (int j = 0; j < arr.length; j++) {
@@ -39,32 +33,6 @@ public class FindDifferences {
 			}
 		}
 		
-		
-		
-		return "No Such Pair";
-	}
-
-
-	// Slightly Optimized Approach
-	public static String findDifferenceV2(int []arr,int n)
-	{
-		
-		Arrays.sort(arr);
-		int  i = 0;
-		int j = arr.length-1;
-		while(i < arr.length) {
-			
-			if(arr[j] - arr[i] > n) {
-				j--;
-			}else if(arr[j] - arr[i] == n)
-				return "("+arr[j]+","+arr[i]+")";
-			else {
-				i++;
-				j = arr.length-1;
-			}
-			
-			
-		}
 		
 		
 		return "No Such Pair";
