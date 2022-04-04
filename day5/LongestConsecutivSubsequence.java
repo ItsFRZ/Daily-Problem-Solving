@@ -20,12 +20,17 @@ public class LongestConsecutivSubsequence {
 //		
 //		System.out.println(Arrays.toString(testCase1));
 		
-		int ans = logestConsecutiveSubsequence(new int[]{32});
-		System.out.println(ans);
-//	
+//		int ans = logestConsecutiveSubsequence(new int[]{32});
+//		System.out.println(ans);
+
+		
+		logestConsecutiveSubsequenceV2(arr);
 	}
 	
+
 	
+	
+//	Approach 1 : TC - O(nlogn) SC - O(1)
 	public static int logestConsecutiveSubsequence(int []arr) {
 		
 		
@@ -58,6 +63,53 @@ public class LongestConsecutivSubsequence {
 		
 		
 		return max;
+	}
+	
+
+//	Approach 2 : T - O(n) SC - O(n)
+	public static void logestConsecutiveSubsequenceV2(int []arr) {
+		
+		HashMap<Integer, Boolean> myMap = new HashMap<Integer, Boolean>();
+		
+		for(int val : arr) {
+			myMap.put(val, true);
+		}
+		
+		for(int val : arr) {
+			if(myMap.containsKey(val-1)) {
+				myMap.put(val, false);
+			}
+		}
+		
+		System.out.println(myMap);
+		
+		int msp  = 0;
+		int ml = 0;
+		for (int val : arr) {
+			int tsp = val;
+			int tl = 1;
+			if(myMap.get(val) == true) {
+			
+				while(myMap.containsKey(tsp+tl)) {
+					tl++;
+				}
+				
+				if(tl > ml) {
+					ml = tl;
+					msp = tsp;
+				}
+				
+			}
+			
+		}
+		
+		
+		System.out.println(ml);
+		for (int i = msp; i < msp+ml; i++) {
+			System.out.print(i+" ");
+		}
+		
+		
 	}
 	
 }
